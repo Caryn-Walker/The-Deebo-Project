@@ -1,13 +1,27 @@
 <section id="youtube">
 
-    <h2>The Deebo Project</h2>
+    <div class="box">
 
-    <img src="images/podcast.jpg"
-         alt="Podcast">
+        <img src="youtube-banner.jpg"
+             alt="Podcasts and Conversations"
+             class="service-image">
 
-    <p>
-        Straight-talking conversations, controversial topics,
-        day-to-day life, fitness and real-life experiences.
-    </p>
+        <h2>Podcasts & Conversations</h2>
+
+        <p>
+
+            Straight-talking conversations covering controversial topics,
+            current affairs, day-to-day life, fitness and real-life experiences.
+
+        </p>
+
+        <p>
+
+            Through honest interviews and open discussions, The Deebo Project
+            explores the stories, decisions and life lessons that shape people.
+
+        </p>
+
+    </div>
 
 </section>
