@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <head>
 
     <meta charset="UTF-8">
@@ -8,7 +9,33 @@
     <title>The Deebo Project</title>
 
     <style>
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+}
 
+button {
+    background: #cc0000;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #ff0000;
+}
+
+i {
+    margin-right: 10px;
+}
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -143,8 +170,7 @@ combining traditional craftsmanship with modern design.
 <section id="contact">
 
     <div class="box">
-
-   <section id="contact">
+<section id="contact">
 
     <div class="box">
 
@@ -153,28 +179,49 @@ combining traditional craftsmanship with modern design.
         <p>Get in touch for personal training, podcasts or bespoke carpentry projects.</p>
 
         <p>
-            📧 <a href="mailto:deebo@thedeeboproject.com">
-            deebo@thedeeboproject.com
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:deebo@thedeeboproject.com">
+                deebo@thedeeboproject.com
             </a>
         </p>
 
         <p>
-            📘 <a href="https://www.facebook.com/thedeeboproject/" target="_blank">
-            Facebook – The Deebo Project
+            <i class="fab fa-facebook"></i>
+            <a href="https://www.facebook.com/thedeeboproject/" target="_blank">
+                The Deebo Project
             </a>
         </p>
 
         <p>
-            🎬 <a href="https://www.youtube.com/@thedeeboproject" target="_blank">
-            YouTube – @thedeeboproject
+            <i class="fab fa-youtube"></i>
+            <a href="https://www.youtube.com/@thedeeboproject" target="_blank">
+                @thedeeboproject
             </a>
         </p>
 
         <p>
-            💬 <a href="https://wa.me/447345074892" target="_blank">
-            WhatsApp – +44 734 507 4892
+            <i class="fab fa-whatsapp"></i>
+            <a href="https://wa.me/447345074892" target="_blank">
+                +44 734 507 4892
             </a>
         </p>
+
+        <hr>
+
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+            <input type="text" name="name" placeholder="Your name" required>
+
+            <input type="email" name="email" placeholder="Your email" required>
+
+            <textarea name="message"
+                      placeholder="Type your message here"
+                      rows="6"
+                      required></textarea>
+
+            <button type="submit">Send Message</button>
+
+        </form>
 
     </div>
 
