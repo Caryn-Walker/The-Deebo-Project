@@ -1,42 +1,36 @@
 <section id="fitness">
 
-    <h2>Personal Training</h2>
+    <div class="box">
 
-    <img src="images/training1.jpg"
-         alt="Personal Training"
-         width="400">
+        <img src="fitness.jpg"
+             alt="Fitness and Personal Training"
+             class="service-image">
 
-    <p>
-        Of course. Here's the updated version with your overseas fitness retreats included:
+        <h2>Fitness & Personal Training</h2>
 
----
+        <p>
 
-### Fitness & Personal Training
+            Ex-British Army and fully qualified personal trainer,
+            specialising in strength and conditioning, weight loss,
+            muscle building and endurance.
 
-**Ex-British Army and fully qualified Personal Trainer, dedicated to helping individuals transform both physically and mentally. I specialise in highly demanding training programmes, strength and conditioning, weight loss, muscle building and endurance, tailoring every programme to each individual's goals and abilities.**
+        </p>
 
-**Fitness is about more than simply training in the gym. I provide personalised nutrition advice, 24/7 support and guidance, and practical life coaching designed to build confidence, discipline and a winning mindset. Whether your goal is to improve your health, push your physical limits or make lasting changes to your lifestyle, I will support you every step of the way.**
+        <p>
 
-**My approach combines Military discipline with realistic, sustainable methods that deliver long-term results. Through one-to-one coaching, motivation and accountability, I help clients develop the habits, mindset and resilience needed to succeed not only in fitness, but in everyday life.**
+            I provide personalised nutrition advice, life coaching
+            and 24/7 support to help clients achieve lasting results.
 
-**For those looking for a complete change of environment, I also offer fitness holidays and retreats abroad in the sun. These retreats combine intensive training, nutrition guidance, relaxation and personal development, giving clients the opportunity to focus entirely on their physical and mental wellbeing in a motivating and inspiring setting.**
+        </p>
 
-### Services include:
+        <p>
 
-* Personal training and strength coaching
-* Weight loss and body transformation
-* Muscle building and conditioning
-* Nutrition advice and meal guidance
-* 24/7 support and accountability
-* Life coaching and mindset development
-* Confidence building and motivation
-* Overseas fitness holidays and retreats
-* Training available throughout the UK and Europe
+            I also offer overseas fitness retreats in the sun,
+            combining training, recovery and personal development
+            in inspiring locations.
 
-### *Discipline. Focus. Hard Work. Real Results.*
+        </p>
 
-If you'd like, I can also update the Word document and create a **luxury "fitness retreats in the sun" section** for your website with palm-tree imagery and a "Book Your Retreat" button.
-
-    </p>
+    </div>
 
 </section>
