@@ -1,13 +1,27 @@
 <section id="carpentry">
 
-    <h2>Bespoke Carpentry</h2>
+    <div class="box">
 
-    <img src="images/carpentry1.jpg"
-         alt="Carpentry">
+        <img src="carpentry.jpg"
+             alt="Bespoke Carpentry"
+             class="service-image">
 
-    <p>
-        Handmade bespoke furniture and unique pieces,
-        crafted to order using quality materials.
-    </p>
+        <h2>Bespoke Carpentry</h2>
+
+        <p>
+
+            Bespoke handcrafted furniture and custom projects built to order,
+            combining traditional craftsmanship with modern design.
+
+        </p>
+
+        <p>
+
+            Every piece is designed around the customer's vision,
+            creating unique furniture that is built to last.
+
+        </p>
+
+    </div>
 
 </section>
