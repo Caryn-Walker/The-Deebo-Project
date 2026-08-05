@@ -1,0 +1,15 @@
+<section id="fitness">
+
+    <h2>Personal Training</h2>
+
+    <img src="images/training1.jpg"
+         alt="Personal Training"
+         width="400">
+
+    <p>
+        Ex-British Army and qualified personal trainer specialising in
+        highly physical training programmes, strength, conditioning,
+        nutrition and 24/7 support.
+    </p>
+
+</section>
