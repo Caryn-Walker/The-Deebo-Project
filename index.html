@@ -2,6 +2,8 @@
 <html lang="en">
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">    
 <head>
 
     <meta charset="UTF-8">
@@ -9,6 +11,47 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     <title>The Deebo Project</title>
 
     <style>
+        .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.social-links i {
+    width: 30px;
+    font-size: 22px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    background: #cc0000;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff0000;
+}
 input,
 textarea {
     width: 100%;
@@ -166,56 +209,42 @@ combining traditional craftsmanship with modern design.
     </div>
 
 </section>
-
-<section id="contact">
-
-    <div class="box">
 <section id="contact">
 
     <div class="box">
 
-        <h2>Contact Me</h2>
+        <h2>Contact The Deebo Project</h2>
 
-        <p>Get in touch for personal training, podcasts or bespoke carpentry projects.</p>
+        <p>Get in touch for personal training, podcasts and bespoke carpentry projects.</p>
 
-        <p>
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:deebo@thedeeboproject.com">
-                deebo@thedeeboproject.com
+        <div class="social-links">
+
+            <a href="mailto:deebo@thedeeboproject.com" target="_blank">
+                <i class="fas fa-envelope"></i> Email
             </a>
-        </p>
 
-        <p>
-            <i class="fab fa-facebook"></i>
             <a href="https://www.facebook.com/thedeeboproject/" target="_blank">
-                The Deebo Project
+                <i class="fab fa-facebook"></i> Facebook
             </a>
-        </p>
 
-        <p>
-            <i class="fab fa-youtube"></i>
             <a href="https://www.youtube.com/@thedeeboproject" target="_blank">
-                @thedeeboproject
+                <i class="fab fa-youtube"></i> YouTube
             </a>
-        </p>
 
-        <p>
-            <i class="fab fa-whatsapp"></i>
             <a href="https://wa.me/447345074892" target="_blank">
-                +44 734 507 4892
+                <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
-        </p>
 
-        <hr>
+        </div>
 
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <form action="https://formspree.io/f/xaewywra" method="POST">
 
             <input type="text" name="name" placeholder="Your name" required>
 
-            <input type="email" name="email" placeholder="Your email" required>
+            <input type="email" name="email" placeholder="Your email address" required>
 
             <textarea name="message"
-                      placeholder="Type your message here"
+                      placeholder="Write your message here..."
                       rows="6"
                       required></textarea>
 
