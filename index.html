@@ -3,408 +3,801 @@
 
 <head>
 
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <title>The Deebo Project</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #1a1a1a;
-            color: white;
-        }
-
-        header {
-            background-color: black;
-            text-align: center;
-            padding: 40px;
-        }
-
-        header img {
-            width: 100%;
-            display: block;
-        }
-
-        nav {
-            background-color: #333;
-            padding: 15px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 20px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: orange;
-        }
-
-        section {
-            padding: 35px;
-        }
-
-        .box {
-            background-color: #2a2a2a;
-            padding: 25px;
-            border-radius: 10px;
-        }
-
-        h1 {
-            margin-bottom: 10px;
-        }
-
-        h2 {
-            color: orange;
-        }
-
-        footer {
-            background-color: black;
-            text-align: center;
-            padding: 20px;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background: #cc0000;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #ff0000;
-        }
-
-        /* =========================================
-           DEEBO PROJECT - THREE IMAGE PANELS
-           ========================================= */
-
-        .business-carousel {
-            display: flex;
-            gap: 10px;
-            width: 100%;
-            min-height: 600px;
-            overflow: hidden;
-        }
-
-        .business-panel {
-            position: relative;
-            flex: 1 1 0;
-            min-width: 0;
-            min-height: 600px;
-            overflow: hidden;
-            border-radius: 10px;
-            cursor: pointer;
-            background: #111;
-            transition:
-                flex 0.55s ease,
-                transform 0.55s ease,
-                box-shadow 0.55s ease;
-        }
-
-        /*
-           When the mouse moves over a panel,
-           that panel becomes slightly wider.
-        */
-
-        .business-panel:hover {
-            flex: 1.18 1 0;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.55);
-        }
-
-        /*
-           IMPORTANT:
-           contain = show the WHOLE IMAGE.
-           Nothing important gets cropped.
-        */
-
-        .business-panel::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-
-            background-image: var(--panel-image);
-
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center center;
-
-            background-color: #111;
-
-            transition: transform 0.55s ease;
-        }
-
-        .business-panel:hover::before {
-            transform: scale(1.025);
-        }
-
-        /*
-           Very subtle dark fade at the bottom
-           so the white title can be read.
-        */
-
-        .business-panel::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 32%;
+<meta charset="UTF-8">
 
-            background: linear-gradient(
-                to bottom,
-                transparent,
-                rgba(0,0,0,0.9)
-            );
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-            pointer-events: none;
-        }
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        .panel-content {
-            position: relative;
-            z-index: 2;
+<title>The Deebo Project</title>
 
-            height: 600px;
-            padding: 28px;
 
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+<style>
 
-            text-align: left;
-        }
+/* =====================================================
+   GENERAL
+   ===================================================== */
 
-        .panel-content h2 {
-            color: white;
-            margin: 0 0 8px;
+* {
+    box-sizing: border-box;
+}
 
-            font-size: clamp(22px, 2.7vw, 36px);
-            line-height: 1.1;
+html {
+    scroll-behavior: smooth;
+}
 
-            text-shadow: 2px 2px 8px black;
-        }
+body {
 
-        /*
-           SHORT INTRODUCTION
-           Only appears when hovering.
-        */
+    font-family: Arial, sans-serif;
 
-        .panel-intro {
-            max-width: 600px;
+    margin: 0;
 
-            margin: 0;
+    background: #1a1a1a;
 
-            color: white;
+    color: white;
 
-            font-size: 15px;
-            line-height: 1.45;
+    line-height: 1.6;
 
-            text-shadow: 1px 1px 6px black;
+}
 
-            opacity: 0;
 
-            transform: translateY(12px);
+/* =====================================================
+   HEADER
+   ===================================================== */
 
-            transition:
-                opacity 0.35s ease,
-                transform 0.35s ease;
-        }
+header {
 
-        .business-panel:hover .panel-intro {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    background: black;
 
-        /*
-           The full information is hidden
-           until the visitor clicks the panel.
-        */
+    text-align: center;
 
-        .panel-details,
-        .panel-actions {
-            display: none;
-        }
+    padding: 40px;
 
-        /*
-           CLICKED PANEL
-        */
+}
 
-        .business-panel.expanded {
-            flex: 2.2 1 0;
-        }
+header img {
 
-        .business-panel.expanded .panel-details {
-            display: block;
+    width: 100%;
 
-            max-height: 330px;
+    display: block;
 
-            overflow-y: auto;
+}
 
-            margin-top: 15px;
+.site-title {
 
-            padding-right: 8px;
+    padding: 30px 20px;
 
-            line-height: 1.5;
+}
 
-            text-shadow: 1px 1px 5px black;
-        }
+.site-title h1 {
 
-        .business-panel.expanded .panel-actions {
-            display: flex;
+    margin: 0 0 8px 0;
 
-            flex-wrap: wrap;
+    font-size: clamp(32px, 5vw, 58px);
 
-            gap: 10px;
+}
 
-            margin-top: 15px;
-        }
+.site-title p {
 
-        .panel-button {
-            display: inline-block;
+    margin: 0;
 
-            background: rgba(0,0,0,0.8);
+    font-size: 18px;
 
-            color: white;
+}
 
-            text-decoration: none;
 
-            padding: 10px 16px;
+/* =====================================================
+   NAVIGATION
+   ===================================================== */
 
-            border-radius: 6px;
+nav {
 
-            border: 1px solid white;
+    background: #333;
 
-            font-weight: bold;
-        }
+    padding: 15px;
 
-        .panel-button:hover {
-            background: #cc0000;
-        }
+    text-align: center;
 
-        .panel-hint {
-            font-size: 12px;
+    position: sticky;
 
-            color: #eee;
+    top: 0;
 
-            margin-top: 8px;
+    z-index: 1000;
 
-            text-shadow: 1px 1px 5px black;
+}
 
-            opacity: 0;
-        }
+nav a {
 
-        .business-panel:hover .panel-hint {
-            opacity: 0.8;
-        }
+    color: white;
 
-        /* =========================================
-           SOCIAL LINKS
-           ========================================= */
+    text-decoration: none;
 
-        .social-links {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
+    margin: 0 18px;
 
-        .social-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
+    font-weight: bold;
 
-        .social-links a:hover {
-            color: orange;
-        }
+}
 
-        .social-links i {
-            width: 30px;
-            font-size: 22px;
-        }
+nav a:hover {
 
-        /* =========================================
-           MOBILE
-           ========================================= */
+    color: orange;
 
-        @media (max-width: 800px) {
+}
 
-            nav a {
-                display: inline-block;
-                margin: 8px;
-            }
 
-            section {
-                padding: 20px;
-            }
+/* =====================================================
+   HOMEPAGE
+   ===================================================== */
 
-            .business-carousel {
-                flex-direction: column;
-                min-height: auto;
-                overflow: visible;
-            }
+#home-page {
 
-            .business-panel,
-            .business-panel:hover {
-                flex: none;
-                width: 100%;
-                min-height: 400px;
-                transform: none;
-            }
+    display: block;
 
-            .panel-content {
-                height: 400px;
-            }
+}
 
-            .panel-intro {
-                opacity: 1;
-                transform: none;
-            }
+.business-section {
 
-            .panel-hint {
-                opacity: 0.8;
-            }
+    padding: 35px;
 
-            .business-panel.expanded {
-                flex: none;
-                min-height: 600px;
-            }
+}
 
-            .business-panel.expanded .panel-content {
-                height: 600px;
-            }
+.business-carousel {
 
-        }
+    display: flex;
 
-    </style>
+    gap: 10px;
+
+    width: 100%;
+
+    min-height: 600px;
+
+}
+
+
+/* =====================================================
+   BUSINESS PANELS
+   ===================================================== */
+
+.business-panel {
+
+    position: relative;
+
+    flex: 1 1 0;
+
+    min-width: 0;
+
+    min-height: 600px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #111;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.35);
+
+    transition:
+        flex 0.55s ease,
+        transform 0.55s ease,
+        box-shadow 0.55s ease;
+
+}
+
+
+/* PANEL GETS A LITTLE WIDER */
+
+.business-panel:hover {
+
+    flex: 1.18 1 0;
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.6);
+
+}
+
+
+/* =====================================================
+   FULL IMAGE
+   ===================================================== */
+
+.business-panel::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image: var(--panel-image);
+
+    /*
+       CONTAIN IS IMPORTANT.
+       It keeps the entire photograph visible.
+    */
+
+    background-size: contain;
+
+    background-repeat: no-repeat;
+
+    background-position: center;
+
+    background-color: #111;
+
+    transition:
+        transform 0.6s ease;
+
+}
+
+
+.business-panel:hover::before {
+
+    transform: scale(1.025);
+
+}
+
+
+/* =====================================================
+   SUBTLE BOTTOM FADE
+   ===================================================== */
+
+.business-panel::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    height: 38%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(0,0,0,0.92)
+        );
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================================
+   PANEL CONTENT
+   ===================================================== */
+
+.panel-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    height: 600px;
+
+    padding: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+}
+
+
+/* TITLE */
+
+.panel-content h2 {
+
+    color: white;
+
+    margin: 0 0 8px 0;
+
+    font-size:
+        clamp(24px, 3vw, 38px);
+
+    line-height: 1.1;
+
+    text-shadow:
+        2px 2px 10px black;
+
+}
+
+
+/* =====================================================
+   SHORT INTRO
+   ===================================================== */
+
+.panel-intro {
+
+    max-width: 620px;
+
+    margin: 0;
+
+    color: white;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    text-shadow:
+        1px 1px 7px black;
+
+    opacity: 0;
+
+    transform:
+        translateY(12px);
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+
+}
+
+
+.business-panel:hover .panel-intro {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =====================================================
+   MORE BUTTON
+   ===================================================== */
+
+.more-link {
+
+    display: inline-block;
+
+    width: fit-content;
+
+    margin-top: 15px;
+
+    padding: 9px 17px;
+
+    color: white;
+
+    background:
+        rgba(0,0,0,0.65);
+
+    border:
+        1px solid rgba(255,255,255,0.8);
+
+    border-radius: 5px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    opacity: 0;
+
+    transform:
+        translateY(8px);
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease,
+        background 0.25s ease;
+
+}
+
+
+.business-panel:hover .more-link {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+.more-link:hover {
+
+    background:
+        rgba(204,0,0,0.9);
+
+}
+
+
+/* =====================================================
+   DEDICATED BUSINESS PAGES
+   ===================================================== */
+
+.business-page {
+
+    display: none;
+
+    min-height: calc(100vh - 100px);
+
+    padding: 45px 30px 60px;
+
+}
+
+
+.business-page.active {
+
+    display: block;
+
+}
+
+
+.business-page-inner {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+}
+
+
+/* LARGE PAGE IMAGE */
+
+.business-page-image {
+
+    width: 100%;
+
+    max-height: 650px;
+
+    object-fit: contain;
+
+    background: #111;
+
+    border-radius: 10px;
+
+    display: block;
+
+    margin-bottom: 35px;
+
+}
+
+
+/* PAGE CONTENT */
+
+.business-page-content {
+
+    background: #2a2a2a;
+
+    border-radius: 10px;
+
+    padding: 35px;
+
+}
+
+
+.business-page-content h1 {
+
+    margin-top: 0;
+
+    font-size:
+        clamp(32px, 5vw, 55px);
+
+}
+
+
+.business-page-content h2 {
+
+    color: orange;
+
+    margin-top: 35px;
+
+}
+
+
+.business-page-content p {
+
+    margin-bottom: 20px;
+
+}
+
+
+.business-page-content li {
+
+    margin-bottom: 8px;
+
+}
+
+
+/* =====================================================
+   PAGE BUTTONS
+   ===================================================== */
+
+.page-button {
+
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    margin:
+        10px 10px 10px 0;
+
+    background:
+        #cc0000;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    font-weight: bold;
+
+    border: none;
+
+    cursor: pointer;
+
+}
+
+
+.page-button:hover {
+
+    background:
+        #ff0000;
+
+}
+
+
+/* =====================================================
+   CONTACT
+   ===================================================== */
+
+.contact-section {
+
+    padding: 35px;
+
+}
+
+
+.box {
+
+    background:
+        #2a2a2a;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+}
+
+
+.box h2 {
+
+    color: orange;
+
+}
+
+
+.social-links {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.social-links a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+}
+
+
+.social-links a:hover {
+
+    color: orange;
+
+}
+
+
+.social-links i {
+
+    width: 30px;
+
+    font-size: 22px;
+
+}
+
+
+/* =====================================================
+   FORMS
+   ===================================================== */
+
+input,
+textarea {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin: 10px 0;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+}
+
+
+button {
+
+    background:
+        #cc0000;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 24px;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+}
+
+
+button:hover {
+
+    background:
+        #ff0000;
+
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+
+    background: black;
+
+    text-align: center;
+
+    padding: 20px;
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 800px) {
+
+    nav a {
+
+        display: inline-block;
+
+        margin: 7px;
+
+    }
+
+
+    .business-section {
+
+        padding: 20px;
+
+    }
+
+
+    .business-carousel {
+
+        flex-direction: column;
+
+        min-height: auto;
+
+    }
+
+
+    .business-panel,
+    .business-panel:hover {
+
+        flex: none;
+
+        width: 100%;
+
+        min-height: 400px;
+
+        transform: none;
+
+    }
+
+
+    .panel-content {
+
+        height: 400px;
+
+        padding: 22px;
+
+    }
+
+
+    .panel-intro,
+    .more-link {
+
+        opacity: 1;
+
+        transform: none;
+
+    }
+
+
+    .business-page {
+
+        padding: 25px 15px 45px;
+
+    }
+
+
+    .business-page-content {
+
+        padding: 22px;
+
+    }
+
+}
+
+
+/* =====================================================
+   HIDE HOMEPAGE WHEN A BUSINESS PAGE IS OPEN
+   ===================================================== */
+
+body.page-open #home-page {
+
+    display: none;
+
+}
+
+body.page-open #contact {
+
+    display: none;
+
+}
+
+
+body.page-open .business-page {
+
+    display: none;
+
+}
+
+
+body.page-open .business-page.active {
+
+    display: block;
+
+}
+
+</style>
 
 </head>
 
@@ -412,583 +805,1073 @@
 <body>
 
 
-    <!-- =========================================
-         MAIN BANNER
-         ========================================= -->
+<!-- ===================================================
+     TOP BANNER
+     =================================================== -->
 
-    <header>
+<header>
 
-        <img src="Screenshot 2026-08-05 085413.png"
-             alt="The Deebo Project Banner">
+<img src="Screenshot 2026-08-05 085413.png"
+     alt="The Deebo Project Banner">
 
-    </header>
+</header>
 
 
-    <!-- =========================================
-         TITLE
-         ========================================= -->
+<!-- ===================================================
+     SITE TITLE
+     =================================================== -->
 
-    <header>
+<header class="site-title">
 
-        <h1>THE DEEBO PROJECT</h1>
+<h1>
+THE DEEBO PROJECT
+</h1>
 
-        <p>Fitness • Carpentry • Podcasts</p>
+<p>
+Fitness • Carpentry • Podcasts
+</p>
 
-    </header>
+</header>
 
 
-    <!-- =========================================
-         NAVIGATION
-         ========================================= -->
+<!-- ===================================================
+     NAVIGATION
+     =================================================== -->
 
-    <nav>
+<nav>
 
-        <a href="#businesses">Fitness</a>
+<a href="#"
+   onclick="showHome(); return false;">
+Home
+</a>
 
-        <a href="#businesses">YouTube</a>
+<a href="#fitness"
+   onclick="showPage('fitness'); return false;">
+Fitness
+</a>
 
-        <a href="#businesses">Carpentry</a>
+<a href="#youtube"
+   onclick="showPage('youtube'); return false;">
+YouTube
+</a>
 
-        <a href="#contact">Contact</a>
+<a href="#carpentry"
+   onclick="showPage('carpentry'); return false;">
+Carpentry
+</a>
 
-    </nav>
+<a href="#contact"
+   onclick="showHome(); setTimeout(function(){document.getElementById('contact').scrollIntoView();},50);">
+Contact
+</a>
 
+</nav>
 
-    <!-- =========================================
-         THREE BUSINESS AREAS
-         ========================================= -->
 
-    <section id="businesses">
+<!-- ===================================================
+     HOME PAGE
+     =================================================== -->
 
-        <div class="business-carousel">
+<div id="home-page">
 
 
-            <!-- =====================================
-                 FITNESS
-                 ===================================== -->
+<section class="business-section">
 
-            <article class="business-panel"
-                     style="--panel-image: url('fitness.jpeg');"
-                     tabindex="0">
 
-                <div class="panel-content">
+<div class="business-carousel">
 
-                    <h2>
-                        Fitness &amp; Personal Training
-                    </h2>
 
-                    <p class="panel-intro">
-                        Personal training, strength, conditioning,
-                        nutrition, mindset and fitness retreats
-                        designed to create real change.
-                    </p>
+<!-- =================================================
+     FITNESS PANEL
+     ================================================= -->
 
+<article class="business-panel"
+         style="--panel-image: url('fitness.jpeg');">
 
-                    <div class="panel-details">
 
-                        <p>
-                            Ex-British Army and fully qualified personal
-                            trainer, dedicated to helping individuals
-                            transform both physically and mentally.
-                        </p>
+<div class="panel-content">
 
-                        <p>
-                            I specialise in highly demanding training
-                            programmes, strength and conditioning,
-                            weight loss, muscle building and endurance,
-                            tailoring every programme to each individual's
-                            goals and abilities.
-                        </p>
 
-                        <p>
-                            Fitness is about more than simply training in
-                            the gym. I provide personalised nutrition advice,
-                            24/7 support and guidance, and practical life
-                            coaching designed to build confidence,
-                            discipline and a winning mindset.
-                        </p>
+<h2>
+Fitness &amp; Personal Training
+</h2>
 
-                        <p>
-                            I also offer fitness holidays and retreats
-                            abroad in the sun. These combine intensive
-                            training, nutrition guidance, relaxation and
-                            personal development.
-                        </p>
 
-                        <p>
-                            Services include:
-                        </p>
+<p class="panel-intro">
 
-                        <ul>
+Personal training, strength, conditioning,
+nutrition, mindset and fitness retreats
+designed to create real change.
 
-                            <li>
-                                Personal training and strength coaching
-                            </li>
+</p>
 
-                            <li>
-                                Weight loss and body transformation
-                            </li>
 
-                            <li>
-                                Muscle building and conditioning
-                            </li>
+<a class="more-link"
+   href="#fitness"
+   onclick="showPage('fitness'); return false;">
 
-                            <li>
-                                Nutrition advice and meal guidance
-                            </li>
+More →
 
-                            <li>
-                                24/7 support and accountability
-                            </li>
+</a>
 
-                            <li>
-                                Life coaching and mindset development
-                            </li>
 
-                            <li>
-                                Confidence building and motivation
-                            </li>
+</div>
 
-                            <li>
-                                Overseas fitness holidays and retreats
-                            </li>
 
-                            <li>
-                                Training available throughout the UK and Europe
-                            </li>
+</article>
 
-                        </ul>
 
-                        <p>
-                            Discipline. Focus. Hard Work. Real Results.
-                        </p>
 
-                    </div>
+<!-- =================================================
+     YOUTUBE PANEL
+     ================================================= -->
 
+<article class="business-panel"
+         style="--panel-image: url('youtube.jpeg.png');">
 
-                    <div class="panel-actions">
 
-                        <a class="panel-button"
-                           href="#contact">
+<div class="panel-content">
 
-                            Get in Touch
 
-                        </a>
+<h2>
+YouTube &amp; Podcasts
+</h2>
 
-                    </div>
 
+<p class="panel-intro">
 
-                    <div class="panel-hint">
-                        Hover to explore • Click for more
-                    </div>
+Straight talking, honest conversations
+and real experiences covering the
+subjects people often avoid.
 
-                </div>
+</p>
 
-            </article>
 
+<a class="more-link"
+   href="#youtube"
+   onclick="showPage('youtube'); return false;">
 
+More →
 
-            <!-- =====================================
-                 YOUTUBE / PODCASTS
-                 ===================================== -->
+</a>
 
-            <article class="business-panel"
-                     style="--panel-image: url('youtube.jpeg.png');"
-                     tabindex="0">
 
-                <div class="panel-content">
+</div>
 
-                    <h2>
-                        YouTube &amp; Podcasts
-                    </h2>
 
-                    <p class="panel-intro">
-                        Straight talking, honest conversations
-                        and real experiences covering the subjects
-                        people often avoid.
-                    </p>
+</article>
 
 
-                    <div class="panel-details">
 
-                        <p>
-                            Welcome to the channel.
-                        </p>
+<!-- =================================================
+     CARPENTRY PANEL
+     ================================================= -->
 
-                        <p>
-                            Straight talking, this channel is built around
-                            honest conversations, real experiences and
-                            topics that many people avoid discussing,
-                            alongside day-to-day life.
-                        </p>
+<article class="business-panel"
+         style="--panel-image: url('carpentry.jpeg.png');">
 
-                        <p>
-                            Expect straightforward discussions covering
-                            controversial subjects, current affairs,
-                            life experiences, personal responsibility,
-                            fitness, mental resilience and the challenges
-                            people face in everyday life.
-                        </p>
 
-                        <p>
-                            Nothing is off limits, and every conversation
-                            aims to explore different perspectives without
-                            sensationalism or sugar-coating the truth.
-                        </p>
+<div class="panel-content">
 
-                        <p>
-                            Whether we're discussing difficult social
-                            issues, interviewing people from different
-                            backgrounds or simply documenting everyday
-                            life, the goal is to encourage open
-                            conversation, challenge opinions and inspire
-                            positive change.
-                        </p>
 
-                        <p>
-                            If you value honesty, straight talking and
-                            real-life experiences, you're in the right place.
-                        </p>
+<h2>
+Deebo Bespoke Carpentry
+</h2>
 
-                        <p>
-                            Expect real discussions, challenging viewpoints
-                            and thought-provoking podcasts with no filters.
-                        </p>
 
-                    </div>
+<p class="panel-intro">
 
+Handcrafted furniture and bespoke
+projects, built to order and made
+especially for you.
 
-                    <div class="panel-actions">
+</p>
 
-                        <a class="panel-button"
-                           href="https://www.youtube.com/@thedeeboproject"
-                           target="_blank"
-                           rel="noopener noreferrer">
 
-                            Visit YouTube
+<a class="more-link"
+   href="#carpentry"
+   onclick="showPage('carpentry'); return false;">
 
-                        </a>
+More →
 
-                    </div>
+</a>
 
 
-                    <div class="panel-hint">
-                        Hover to explore • Click for more
-                    </div>
+</div>
 
-                </div>
 
-            </article>
+</article>
 
 
+</div>
 
-            <!-- =====================================
-                 BESPOKE CARPENTRY
-                 ===================================== -->
 
-            <article class="business-panel"
-                     style="--panel-image: url('carpentry.jpeg.png');"
-                     tabindex="0">
+</section>
 
-                <div class="panel-content">
 
-                    <h2>
-                        Deebo Bespoke Carpentry
-                    </h2>
+<!-- =================================================
+     CONTACT
+     ================================================= -->
 
-                    <p class="panel-intro">
-                        Handcrafted furniture and bespoke projects,
-                        built to order and made especially for you.
-                    </p>
+<section id="contact"
+         class="contact-section">
 
 
-                    <div class="panel-details">
+<div class="box">
 
-                        <p>
-                            Every piece tells a story; yours starts here.
-                        </p>
 
-                        <p>
-                            From custom shelving and tables to unique,
-                            one-off pieces, every project is built with
-                            precision and attention to detail.
-                        </p>
+<h2>
+Contact The Deebo Project
+</h2>
 
-                        <p>
-                            I specialise in creating handcrafted bespoke
-                            furniture and carpentry, built completely
-                            from scratch using reclaimed timber chosen
-                            by you.
-                        </p>
 
-                        <p>
-                            I'm fully mobile, bringing the workshop to you.
-                            Whether it's a custom piece for your home or
-                            building it on-site as part of your space,
-                            you're involved throughout the journey,
-                            making every project as personal as the
-                            finished result.
-                        </p>
+<p>
 
-                        <p>
-                            Over the years I've travelled throughout
-                            Europe, creating bespoke furniture for clients
-                            who wanted something unique, timeless and
-                            built to last.
-                        </p>
+Get in touch for personal training,
+podcasts and bespoke carpentry projects.
 
-                        <p>
-                            Whether you're looking for:
-                        </p>
+</p>
 
-                        <ul>
 
-                            <li>
-                                Bespoke furniture
-                            </li>
+<div class="social-links">
 
-                            <li>
-                                Built-in storage and cabinetry
-                            </li>
 
-                            <li>
-                                A unique statement piece designed
-                                around your vision
-                            </li>
+<a href="mailto:deebo@thedeeboproject.com">
 
-                            <li>
-                                Custom carpentry projects
-                            </li>
+<i class="fas fa-envelope"></i>
 
-                        </ul>
+deebo@thedeeboproject.com
 
-                        <p>
-                            I'd love to help bring your ideas to life.
-                        </p>
+</a>
 
-                        <p>
-                            No mass production. No shortcuts. Just honest
-                            craftsmanship, premium reclaimed timber and
-                            furniture made especially for you.
-                        </p>
 
-                        <p>
-                            Get in touch to discuss your ideas and let's
-                            create something truly unique.
-                        </p>
+<a href="https://www.facebook.com/thedeeboproject/"
+   target="_blank"
+   rel="noopener noreferrer">
 
-                        <p>
-                            Please note that all items are either
-                            individually handcrafted by me or reproduced
-                            from designs found online, tailored to each
-                            client's specific requirements and preferences.
-                        </p>
+<i class="fab fa-facebook"></i>
 
-                        <p>
-                            Email:
-                            deebo@thedeeboproject.com
-                        </p>
+The Deebo Project
 
-                    </div>
+</a>
 
 
-                    <div class="panel-actions">
+<a href="https://www.youtube.com/@thedeeboproject"
+   target="_blank"
+   rel="noopener noreferrer">
 
-                        <a class="panel-button"
-                           href="gallery.html">
+<i class="fab fa-youtube"></i>
 
-                            View Gallery
+@thedeeboproject
 
-                        </a>
+</a>
 
-                        <a class="panel-button"
-                           href="#contact">
 
-                            Request a Quote
+<a href="https://wa.me/447345074892"
+   target="_blank"
+   rel="noopener noreferrer">
 
-                        </a>
+<i class="fab fa-whatsapp"></i>
 
-                    </div>
++44 734 507 4892
 
+</a>
 
-                    <div class="panel-hint">
-                        Hover to explore • Click for more
-                    </div>
 
-                </div>
+</div>
 
-            </article>
 
+<form action="https://formspree.io/f/xaewywra"
+      method="POST">
 
-        </div>
 
-    </section>
+<input type="text"
+       name="name"
+       placeholder="Your name"
+       required>
 
 
+<input type="email"
+       name="email"
+       placeholder="Your email address"
+       required>
 
-    <!-- =========================================
-         CONTACT
-         ========================================= -->
 
-    <section id="contact">
+<textarea name="message"
+          placeholder="Write your message here..."
+          rows="6"
+          required></textarea>
 
-        <div class="box">
 
-            <h2>
-                Contact The Deebo Project
-            </h2>
+<button type="submit">
 
-            <p>
-                Get in touch for personal training, podcasts
-                and bespoke carpentry projects.
-            </p>
+Send Message
 
+</button>
 
-            <div class="social-links">
 
-                <a href="mailto:deebo@thedeeboproject.com">
+</form>
 
-                    <i class="fas fa-envelope"></i>
 
-                    deebo@thedeeboproject.com
+</div>
 
-                </a>
 
+</section>
 
-                <a href="https://www.facebook.com/thedeeboproject/"
-                   target="_blank"
-                   rel="noopener noreferrer">
 
-                    <i class="fab fa-facebook"></i>
+</div>
 
-                    The Deebo Project
 
-                </a>
+<!-- ===================================================
+     FITNESS DEDICATED PAGE
+     =================================================== -->
 
+<section id="fitness"
+         class="business-page">
 
-                <a href="https://www.youtube.com/@thedeeboproject"
-                   target="_blank"
-                   rel="noopener noreferrer">
 
-                    <i class="fab fa-youtube"></i>
+<div class="business-page-inner">
 
-                    @thedeeboproject
 
-                </a>
+<img class="business-page-image"
+     src="fitness.jpeg"
+     alt="Fitness and Personal Training">
 
 
-                <a href="https://wa.me/447345074892"
-                   target="_blank"
-                   rel="noopener noreferrer">
+<div class="business-page-content">
 
-                    <i class="fab fa-whatsapp"></i>
 
-                    +44 734 507 4892
+<h1>
+Fitness &amp; Personal Training
+</h1>
 
-                </a>
 
-            </div>
+<p>
 
+Ex-British Army and fully qualified personal
+trainer, dedicated to helping individuals
+transform both physically and mentally.
 
-            <!-- CONTACT FORM -->
+</p>
 
-            <form action="https://formspree.io/f/xaewywra"
-                  method="POST">
 
-                <input type="text"
-                       name="name"
-                       placeholder="Your name"
-                       required>
+<p>
 
+I specialise in highly demanding training
+programmes, strength and conditioning,
+weight loss, muscle building and endurance,
+tailoring every programme to each individual's
+goals and abilities.
 
-                <input type="email"
-                       name="email"
-                       placeholder="Your email address"
-                       required>
+</p>
 
 
-                <textarea name="message"
-                          placeholder="Write your message here..."
-                          rows="6"
-                          required></textarea>
+<p>
 
+Fitness is about more than simply training
+in the gym. I provide personalised nutrition
+advice, 24/7 support and guidance, and
+practical life coaching designed to build
+confidence, discipline and a winning mindset.
 
-                <button type="submit">
-                    Send Message
-                </button>
+</p>
 
-            </form>
 
-        </div>
+<p>
 
-    </section>
+My approach combines military discipline
+with realistic, sustainable methods that
+deliver long-term results.
 
+</p>
 
 
-    <!-- =========================================
-         FOOTER
-         ========================================= -->
+<p>
 
-    <footer>
+Through one-to-one coaching, motivation
+and accountability, I help clients develop
+the habits, mindset and resilience needed
+to succeed not only in fitness, but in
+everyday life.
 
-        <p>
-            © The Deebo Project 2026
-        </p>
+</p>
 
-    </footer>
 
+<h2>
+Fitness Holidays &amp; Retreats
+</h2>
 
 
-    <!-- =========================================
-         PANEL CLICK FUNCTION
-         ========================================= -->
+<p>
 
-    <script>
+For those looking for a complete change
+of environment, I also offer fitness
+holidays and retreats abroad in the sun.
 
-        document
-            .querySelectorAll(".business-panel")
-            .forEach(function(panel) {
+</p>
 
-                panel.addEventListener("click", function(event) {
 
-                    /*
-                       If the visitor clicks a button/link,
-                       don't close the panel.
-                    */
+<p>
 
-                    if (event.target.closest("a")) {
-                        return;
-                    }
+These retreats combine intensive training,
+nutrition guidance, relaxation and personal
+development, as well as having a Life Coach
+on hand to offer guidance, eliminate
+obstacles and help you stay on track.
 
+</p>
 
-                    /*
-                       Close all other panels.
-                    */
 
-                    document
-                        .querySelectorAll(".business-panel")
-                        .forEach(function(other) {
+<h2>
+Services Include
+</h2>
 
-                            if (other !== panel) {
 
-                                other.classList.remove("expanded");
+<ul>
 
-                            }
+<li>
+Personal training and strength coaching
+</li>
 
-                        });
+<li>
+Weight loss and body transformation
+</li>
 
+<li>
+Muscle building and conditioning
+</li>
 
-                    /*
-                       Open / close the selected panel.
-                    */
+<li>
+Nutrition advice and meal guidance
+</li>
 
-                    panel.classList.toggle("expanded");
+<li>
+24/7 support and accountability
+</li>
 
-                });
+<li>
+Life coaching and mindset development
+</li>
 
-            });
+<li>
+Confidence building and motivation
+</li>
 
-    </script>
+<li>
+Overseas fitness holidays and retreats
+</li>
+
+<li>
+Training available throughout the UK
+and Europe
+</li>
+
+</ul>
+
+
+<p>
+
+<strong>
+Discipline. Focus. Hard Work. Real Results.
+</strong>
+
+</p>
+
+
+<p>
+
+Tel: +44 734 507 4892
+
+<br>
+
+Email:
+deebo@thedeeboproject.com
+
+</p>
+
+
+<a class="page-button"
+   href="#"
+   onclick="showHome(); return false;">
+
+← Back to The Deebo Project
+
+</a>
+
+
+<a class="page-button"
+   href="#contact"
+   onclick="showHome(); setTimeout(function(){document.getElementById('contact').scrollIntoView();},50);">
+
+Get in Touch
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- ===================================================
+     YOUTUBE DEDICATED PAGE
+     =================================================== -->
+
+<section id="youtube"
+         class="business-page">
+
+
+<div class="business-page-inner">
+
+
+<img class="business-page-image"
+     src="youtube.jpeg.png"
+     alt="YouTube and Podcasts">
+
+
+<div class="business-page-content">
+
+
+<h1>
+YouTube &amp; Podcasts
+</h1>
+
+
+<h2>
+Welcome to the channel
+</h2>
+
+
+<p>
+
+Straight talking, this channel is built
+around honest conversations, real experiences
+and topics that many people avoid discussing,
+alongside day-to-day life.
+
+</p>
+
+
+<p>
+
+Expect straightforward discussions covering
+controversial subjects, current affairs,
+life experiences, personal responsibility,
+fitness, mental resilience and the challenges
+people face in everyday life.
+
+</p>
+
+
+<p>
+
+Nothing is off limits, and every conversation
+aims to explore different perspectives without
+sensationalism or sugar-coating the truth.
+
+</p>
+
+
+<h2>
+Real Conversations
+</h2>
+
+
+<p>
+
+Whether we're discussing difficult social
+issues, interviewing people from different
+backgrounds or simply documenting everyday
+life, the goal is to encourage open
+conversation, challenge opinions and inspire
+positive change.
+
+</p>
+
+
+<p>
+
+If you value honesty, straight talking and
+real-life experiences, you're in the right place.
+
+</p>
+
+
+<p>
+
+Expect real discussions, challenging viewpoints
+and thought-provoking podcasts with no filters.
+
+</p>
+
+
+<a class="page-button"
+   href="https://www.youtube.com/@thedeeboproject"
+   target="_blank"
+   rel="noopener noreferrer">
+
+Visit The Deebo Project on YouTube
+
+</a>
+
+
+<p>
+
+Email:
+deebo@thedeeboproject.com
+
+<br>
+
+Tel: +44 734 507 4892
+
+</p>
+
+
+<a class="page-button"
+   href="#"
+   onclick="showHome(); return false;">
+
+← Back to The Deebo Project
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- ===================================================
+     CARPENTRY DEDICATED PAGE
+     =================================================== -->
+
+<section id="carpentry"
+         class="business-page">
+
+
+<div class="business-page-inner">
+
+
+<img class="business-page-image"
+     src="carpentry.jpeg.png"
+     alt="Deebo Bespoke Carpentry">
+
+
+<div class="business-page-content">
+
+
+<h1>
+Deebo Bespoke Carpentry
+</h1>
+
+
+<p>
+
+Every piece tells a story; yours starts here.
+
+</p>
+
+
+<p>
+
+From custom shelving and tables to unique,
+one-off pieces, every project is built with
+precision and attention to detail.
+
+</p>
+
+
+<p>
+
+I specialise in creating handcrafted bespoke
+furniture and carpentry, built completely
+from scratch using reclaimed timber chosen
+by you.
+
+</p>
+
+
+<p>
+
+Every grain, every finish and every detail
+is carefully crafted to create something
+that is truly one of a kind.
+
+</p>
+
+
+<p>
+
+I'm fully mobile, bringing the workshop to you.
+
+</p>
+
+
+<p>
+
+Whether it's a custom piece for your home
+or building it on-site as part of your space,
+you're involved throughout the journey,
+making every project as personal as the
+finished result.
+
+</p>
+
+
+<p>
+
+Over the years I've travelled throughout
+Europe, creating bespoke furniture for
+clients who wanted something unique,
+timeless and built to last.
+
+</p>
+
+
+<h2>
+What I Can Create
+</h2>
+
+
+<ul>
+
+<li>
+Bespoke furniture
+</li>
+
+<li>
+Built-in storage and cabinetry
+</li>
+
+<li>
+A unique statement piece designed
+around your vision
+</li>
+
+<li>
+Custom carpentry projects
+</li>
+
+</ul>
+
+
+<p>
+
+I'd love to help bring your ideas to life.
+
+</p>
+
+
+<p>
+
+<strong>
+
+No mass production. No shortcuts.
+Just honest craftsmanship, premium
+reclaimed timber and furniture made
+especially for you.
+
+</strong>
+
+</p>
+
+
+<p>
+
+Get in touch to discuss your ideas
+and let's create something truly unique.
+
+</p>
+
+
+<p>
+
+Please note that all items are either
+individually handcrafted by me or
+reproduced from designs found online,
+tailored to each client's specific
+requirements and preferences.
+
+</p>
+
+
+<h2>
+Request a Quote
+</h2>
+
+
+<form action="https://formspree.io/f/xaewywra"
+      method="POST">
+
+
+<input type="text"
+       name="name"
+       placeholder="Your name"
+       required>
+
+
+<input type="email"
+       name="email"
+       placeholder="Your email address"
+       required>
+
+
+<input type="tel"
+       name="phone"
+       placeholder="Your phone number">
+
+
+<input type="text"
+       name="project"
+       placeholder="Project type (table, shelving, wardrobe, etc.)"
+       required>
+
+
+<textarea name="description"
+          placeholder="Describe your project, dimensions, wood preferences and any ideas you have."
+          rows="7"
+          required></textarea>
+
+
+<button type="submit">
+
+Request Quote
+
+</button>
+
+
+</form>
+
+
+<p>
+
+Email:
+deebo@thedeeboproject.com
+
+<br>
+
+Tel:
++44 734 507 4892
+
+</p>
+
+
+<a class="page-button"
+   href="gallery.html">
+
+View Gallery
+
+</a>
+
+
+<a class="page-button"
+   href="#"
+   onclick="showHome(); return false;">
+
+← Back to The Deebo Project
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- ===================================================
+     FOOTER
+     =================================================== -->
+
+<footer>
+
+<p>
+
+© The Deebo Project 2026
+
+</p>
+
+</footer>
+
+
+
+<!-- ===================================================
+     PAGE NAVIGATION JAVASCRIPT
+     =================================================== -->
+
+<script>
+
+
+/* =====================================================
+   SHOW A DEDICATED BUSINESS PAGE
+   ===================================================== */
+
+function showPage(page) {
+
+
+    /* Hide homepage */
+
+    document
+        .getElementById("home-page")
+        .style.display = "none";
+
+
+    /* Hide contact */
+
+    document
+        .getElementById("contact")
+        .style.display = "none";
+
+
+    /* Hide every business page */
+
+    document
+        .querySelectorAll(".business-page")
+        .forEach(function(section) {
+
+            section.classList.remove("active");
+
+        });
+
+
+    /* Show selected page */
+
+    var selected =
+        document.getElementById(page);
+
+
+    if (selected) {
+
+        selected.classList.add("active");
+
+    }
+
+
+    /* Add page-open class */
+
+    document.body.classList.add("page-open");
+
+
+    /* Scroll to top */
+
+    window.scrollTo(0, 0);
+
+}
+
+
+/* =====================================================
+   RETURN TO HOME
+   ===================================================== */
+
+function showHome() {
+
+
+    /* Remove page-open */
+
+    document.body.classList.remove("page-open");
+
+
+    /* Show homepage */
+
+    document
+        .getElementById("home-page")
+        .style.display = "block";
+
+
+    /* Show contact */
+
+    document
+        .getElementById("contact")
+        .style.display = "block";
+
+
+    /* Hide business pages */
+
+    document
+        .querySelectorAll(".business-page")
+        .forEach(function(section) {
+
+            section.classList.remove("active");
+
+        });
+
+
+    /* Scroll to top */
+
+    window.scrollTo(0, 0);
+
+}
+
+
+/* =====================================================
+   BROWSER BACK BUTTON
+   ===================================================== */
+
+window.addEventListener("hashchange", function() {
+
+
+    var page =
+        window.location.hash.substring(1);
+
+
+    if (
+        page === "fitness" ||
+        page === "youtube" ||
+        page === "carpentry"
+    ) {
+
+        showPage(page);
+
+    }
+
+    else {
+
+        showHome();
+
+    }
+
+});
+
+
+/* =====================================================
+   OPEN CORRECT PAGE IF URL HAS A HASH
+   ===================================================== */
+
+window.addEventListener("load", function() {
+
+
+    var page =
+        window.location.hash.substring(1);
+
+
+    if (
+        page === "fitness" ||
+        page === "youtube" ||
+        page === "carpentry"
+    ) {
+
+        showPage(page);
+
+    }
+
+});
+
+
+</script>
 
 
 </body>
