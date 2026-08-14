@@ -3,31 +3,78 @@
 
 <head>
 
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <meta charset="UTF-8">
 
     <title>The Deebo Project</title>
 
     <style>
 
-        .social-links {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
+        * {
+            box-sizing: border-box;
         }
 
-        .social-links a {
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        header {
+            background-color: black;
+            text-align: center;
+            padding: 40px;
+        }
+
+        header img {
+            width: 100%;
+            display: block;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            margin: 20px;
+            font-weight: bold;
         }
 
-        .social-links i {
-            width: 30px;
-            font-size: 22px;
+        nav a:hover {
+            color: orange;
+        }
+
+        section {
+            padding: 35px;
+        }
+
+        .box {
+            background-color: #2a2a2a;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: orange;
+        }
+
+        footer {
+            background-color: black;
+            text-align: center;
+            padding: 20px;
         }
 
         input,
@@ -55,61 +102,15 @@
             background: #ff0000;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #1a1a1a;
-            color: white;
-        }
-
-        header {
-            background-color: black;
-            text-align: center;
-            padding: 40px;
-        }
-
-        nav {
-            background-color: #333;
-            padding: 15px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 20px;
-        }
-
-        section {
-            padding: 40px;
-        }
-
-        .box {
-            background-color: #2a2a2a;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        h2 {
-            color: orange;
-        }
-
-        footer {
-            background-color: black;
-            text-align: center;
-            padding: 20px;
-        }
-
-
         /* =========================================
-           THE DEEBO PROJECT - CLEAN BUSINESS PANELS
+           DEEBO PROJECT - THREE IMAGE PANELS
            ========================================= */
 
         .business-carousel {
             display: flex;
-            gap: 14px;
+            gap: 10px;
             width: 100%;
-            min-height: 560px;
+            min-height: 600px;
             overflow: hidden;
         }
 
@@ -117,160 +118,254 @@
             position: relative;
             flex: 1 1 0;
             min-width: 0;
-            min-height: 560px;
-            border-radius: 12px;
+            min-height: 600px;
             overflow: hidden;
+            border-radius: 10px;
             cursor: pointer;
             background: #111;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-            transition: flex 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+            transition:
+                flex 0.55s ease,
+                transform 0.55s ease,
+                box-shadow 0.55s ease;
         }
 
-        .business-panel:hover,
-        .business-panel.active {
-            flex: 1.25 1 0;
+        /*
+           When the mouse moves over a panel,
+           that panel becomes slightly wider.
+        */
+
+        .business-panel:hover {
+            flex: 1.18 1 0;
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.55);
         }
+
+        /*
+           IMPORTANT:
+           contain = show the WHOLE IMAGE.
+           Nothing important gets cropped.
+        */
 
         .business-panel::before {
             content: "";
             position: absolute;
             inset: 0;
+
             background-image: var(--panel-image);
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.78);
-            transition: transform 0.6s ease, filter 0.6s ease;
+
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+
+            background-color: #111;
+
+            transition: transform 0.55s ease;
         }
 
-        .business-panel:hover::before,
-        .business-panel.active::before {
-            transform: scale(1.04);
-            filter: brightness(0.9);
+        .business-panel:hover::before {
+            transform: scale(1.025);
         }
+
+        /*
+           Very subtle dark fade at the bottom
+           so the white title can be read.
+        */
 
         .business-panel::after {
             content: "";
             position: absolute;
-            inset: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 32%;
+
             background: linear-gradient(
                 to bottom,
-                rgba(0, 0, 0, 0.02) 30%,
-                rgba(0, 0, 0, 0.72) 100%
+                transparent,
+                rgba(0,0,0,0.9)
             );
+
             pointer-events: none;
         }
 
         .panel-content {
             position: relative;
             z-index: 2;
-            min-height: 560px;
-            height: 100%;
+
+            height: 600px;
             padding: 28px;
-            box-sizing: border-box;
+
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+
             text-align: left;
         }
 
         .panel-content h2 {
-            color: #fff;
+            color: white;
             margin: 0 0 8px;
-            font-size: clamp(24px, 3vw, 36px);
-            line-height: 1.08;
-            text-shadow: 2px 2px 10px #000;
+
+            font-size: clamp(22px, 2.7vw, 36px);
+            line-height: 1.1;
+
+            text-shadow: 2px 2px 8px black;
         }
+
+        /*
+           SHORT INTRODUCTION
+           Only appears when hovering.
+        */
 
         .panel-intro {
-            max-width: 560px;
+            max-width: 600px;
+
             margin: 0;
+
+            color: white;
+
             font-size: 15px;
             line-height: 1.45;
-            color: #fff;
-            text-shadow: 1px 1px 6px #000;
+
+            text-shadow: 1px 1px 6px black;
+
             opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.35s ease, transform 0.35s ease;
+
+            transform: translateY(12px);
+
+            transition:
+                opacity 0.35s ease,
+                transform 0.35s ease;
         }
 
-        .business-panel:hover .panel-intro,
-        .business-panel.active .panel-intro {
+        .business-panel:hover .panel-intro {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Hidden until the visitor clicks a panel. */
+        /*
+           The full information is hidden
+           until the visitor clicks the panel.
+        */
+
         .panel-details,
         .panel-actions {
             display: none;
         }
 
-        .panel-hint {
-            margin-top: 10px;
-            font-size: 12px;
-            color: #eee;
-            text-shadow: 1px 1px 5px #000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+        /*
+           CLICKED PANEL
+        */
 
-        .business-panel:hover .panel-hint {
-            opacity: 0.85;
-        }
-
-        /* Keep buttons inside the full detail view, not on the hover card. */
-        .business-panel.expanded .panel-details,
-        .business-panel.expanded .panel-actions {
-            display: block;
+        .business-panel.expanded {
+            flex: 2.2 1 0;
         }
 
         .business-panel.expanded .panel-details {
+            display: block;
+
             max-height: 330px;
+
             overflow-y: auto;
-            margin-top: 16px;
+
+            margin-top: 15px;
+
+            padding-right: 8px;
+
+            line-height: 1.5;
+
+            text-shadow: 1px 1px 5px black;
         }
 
         .business-panel.expanded .panel-actions {
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 10px;
-            margin-top: 16px;
+
+            margin-top: 15px;
         }
 
         .panel-button {
             display: inline-block;
-            background: rgba(0, 0, 0, 0.72);
-            color: #fff;
+
+            background: rgba(0,0,0,0.8);
+
+            color: white;
+
             text-decoration: none;
+
             padding: 10px 16px;
+
             border-radius: 6px;
+
+            border: 1px solid white;
+
             font-weight: bold;
-            border: 1px solid rgba(255, 255, 255, 0.55);
-            transition: background 0.2s ease;
         }
 
         .panel-button:hover {
-            background: rgba(204, 0, 0, 0.9);
+            background: #cc0000;
         }
 
-        @media (max-width: 900px) {
-            .business-carousel {
-                min-height: 500px;
-            }
+        .panel-hint {
+            font-size: 12px;
 
-            .business-panel {
-                min-height: 500px;
-            }
+            color: #eee;
 
-            .panel-content {
-                min-height: 500px;
-                padding: 22px;
-            }
+            margin-top: 8px;
+
+            text-shadow: 1px 1px 5px black;
+
+            opacity: 0;
         }
 
-        @media (max-width: 700px) {
+        .business-panel:hover .panel-hint {
+            opacity: 0.8;
+        }
+
+        /* =========================================
+           SOCIAL LINKS
+           ========================================= */
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .social-links a:hover {
+            color: orange;
+        }
+
+        .social-links i {
+            width: 30px;
+            font-size: 22px;
+        }
+
+        /* =========================================
+           MOBILE
+           ========================================= */
+
+        @media (max-width: 800px) {
+
+            nav a {
+                display: inline-block;
+                margin: 8px;
+            }
+
+            section {
+                padding: 20px;
+            }
+
             .business-carousel {
                 flex-direction: column;
                 min-height: auto;
@@ -278,17 +373,15 @@
             }
 
             .business-panel,
-            .business-panel:hover,
-            .business-panel.active {
+            .business-panel:hover {
                 flex: none;
                 width: 100%;
-                min-height: 300px;
+                min-height: 400px;
                 transform: none;
             }
 
             .panel-content {
-                min-height: 300px;
-                padding: 22px;
+                height: 400px;
             }
 
             .panel-intro {
@@ -297,27 +390,43 @@
             }
 
             .panel-hint {
-                opacity: 0.85;
+                opacity: 0.8;
             }
 
             .business-panel.expanded {
-                min-height: 520px;
+                flex: none;
+                min-height: 600px;
             }
+
+            .business-panel.expanded .panel-content {
+                height: 600px;
+            }
+
         }
 
     </style>
 
 </head>
 
+
 <body>
+
+
+    <!-- =========================================
+         MAIN BANNER
+         ========================================= -->
 
     <header>
 
         <img src="Screenshot 2026-08-05 085413.png"
-             alt="The Deebo Project Banner"
-             style="width:100%; display:block;">
+             alt="The Deebo Project Banner">
 
     </header>
+
+
+    <!-- =========================================
+         TITLE
+         ========================================= -->
 
     <header>
 
@@ -327,242 +436,486 @@
 
     </header>
 
+
+    <!-- =========================================
+         NAVIGATION
+         ========================================= -->
+
     <nav>
 
         <a href="#businesses">Fitness</a>
+
         <a href="#businesses">YouTube</a>
+
         <a href="#businesses">Carpentry</a>
+
         <a href="#contact">Contact</a>
 
     </nav>
 
+
+    <!-- =========================================
+         THREE BUSINESS AREAS
+         ========================================= -->
+
     <section id="businesses">
+
         <div class="business-carousel">
 
-            <!-- FITNESS -->
+
+            <!-- =====================================
+                 FITNESS
+                 ===================================== -->
+
             <article class="business-panel"
                      style="--panel-image: url('fitness.jpeg');"
-                     tabindex="0"
-                     aria-label="Fitness and Personal Training">
+                     tabindex="0">
 
                 <div class="panel-content">
-<h2>Fitness &amp; Personal Training</h2>
+
+                    <h2>
+                        Fitness &amp; Personal Training
+                    </h2>
 
                     <p class="panel-intro">
-                        Ex-British Army veteran and qualified personal trainer specialising
-                        in strength, conditioning and personal development.
+                        Personal training, strength, conditioning,
+                        nutrition, mindset and fitness retreats
+                        designed to create real change.
                     </p>
 
+
                     <div class="panel-details">
+
                         <p>
-                            Ex-British Army and fully qualified personal trainer, dedicated
-                            to helping individuals transform both physically and mentally.
-                            I specialise in highly demanding training programmes, strength
-                            and conditioning, weight loss, muscle building and endurance.
+                            Ex-British Army and fully qualified personal
+                            trainer, dedicated to helping individuals
+                            transform both physically and mentally.
                         </p>
 
                         <p>
-                            I provide personalised nutrition advice, 24/7 support and
-                            guidance, and practical life coaching designed to build
-                            confidence, discipline and a winning mindset.
+                            I specialise in highly demanding training
+                            programmes, strength and conditioning,
+                            weight loss, muscle building and endurance,
+                            tailoring every programme to each individual's
+                            goals and abilities.
                         </p>
 
                         <p>
-                            I also offer fitness holidays and retreats abroad in the sun,
-                            combining intensive training, nutrition guidance, relaxation
-                            and personal development.
+                            Fitness is about more than simply training in
+                            the gym. I provide personalised nutrition advice,
+                            24/7 support and guidance, and practical life
+                            coaching designed to build confidence,
+                            discipline and a winning mindset.
+                        </p>
+
+                        <p>
+                            I also offer fitness holidays and retreats
+                            abroad in the sun. These combine intensive
+                            training, nutrition guidance, relaxation and
+                            personal development.
+                        </p>
+
+                        <p>
+                            Services include:
                         </p>
 
                         <ul>
-                            <li>Personal training and strength coaching</li>
-                            <li>Weight loss and body transformation</li>
-                            <li>Muscle building and conditioning</li>
-                            <li>Nutrition advice and meal guidance</li>
-                            <li>24/7 support and accountability</li>
-                            <li>Life coaching and mindset development</li>
-                            <li>Confidence building and motivation</li>
-                            <li>Overseas fitness holidays and retreats</li>
-                            <li>Training throughout the UK and Europe</li>
+
+                            <li>
+                                Personal training and strength coaching
+                            </li>
+
+                            <li>
+                                Weight loss and body transformation
+                            </li>
+
+                            <li>
+                                Muscle building and conditioning
+                            </li>
+
+                            <li>
+                                Nutrition advice and meal guidance
+                            </li>
+
+                            <li>
+                                24/7 support and accountability
+                            </li>
+
+                            <li>
+                                Life coaching and mindset development
+                            </li>
+
+                            <li>
+                                Confidence building and motivation
+                            </li>
+
+                            <li>
+                                Overseas fitness holidays and retreats
+                            </li>
+
+                            <li>
+                                Training available throughout the UK and Europe
+                            </li>
+
                         </ul>
+
+                        <p>
+                            Discipline. Focus. Hard Work. Real Results.
+                        </p>
+
                     </div>
 
+
                     <div class="panel-actions">
-                        <a class="panel-button" href="#contact">Get in Touch</a>
+
+                        <a class="panel-button"
+                           href="#contact">
+
+                            Get in Touch
+
+                        </a>
+
                     </div>
+
 
                     <div class="panel-hint">
                         Hover to explore • Click for more
                     </div>
+
                 </div>
+
             </article>
 
-            <!-- YOUTUBE / PODCASTS -->
+
+
+            <!-- =====================================
+                 YOUTUBE / PODCASTS
+                 ===================================== -->
+
             <article class="business-panel"
                      style="--panel-image: url('youtube.jpeg.png');"
-                     tabindex="0"
-                     aria-label="YouTube and Podcasts">
+                     tabindex="0">
 
                 <div class="panel-content">
-<h2>YouTube &amp; Podcasts</h2>
+
+                    <h2>
+                        YouTube &amp; Podcasts
+                    </h2>
 
                     <p class="panel-intro">
-                        Straight talking, honest conversations, real experiences and
-                        topics many people avoid discussing.
+                        Straight talking, honest conversations
+                        and real experiences covering the subjects
+                        people often avoid.
                     </p>
 
+
                     <div class="panel-details">
+
                         <p>
-                            This channel is built around honest conversations, real
-                            experiences and topics that many people avoid discussing,
+                            Welcome to the channel.
+                        </p>
+
+                        <p>
+                            Straight talking, this channel is built around
+                            honest conversations, real experiences and
+                            topics that many people avoid discussing,
                             alongside day-to-day life.
                         </p>
 
                         <p>
-                            Expect straightforward discussions covering controversial
-                            subjects, current affairs, life experiences, personal
-                            responsibility, fitness, mental resilience and the challenges
+                            Expect straightforward discussions covering
+                            controversial subjects, current affairs,
+                            life experiences, personal responsibility,
+                            fitness, mental resilience and the challenges
                             people face in everyday life.
                         </p>
 
                         <p>
-                            Nothing is off limits. The goal is to explore different
-                            perspectives without sensationalism or sugar-coating the truth,
-                            while encouraging open conversation and positive change.
+                            Nothing is off limits, and every conversation
+                            aims to explore different perspectives without
+                            sensationalism or sugar-coating the truth.
                         </p>
 
                         <p>
-                            Real discussions. Challenging viewpoints. Thought-provoking
-                            podcasts. No filters.
+                            Whether we're discussing difficult social
+                            issues, interviewing people from different
+                            backgrounds or simply documenting everyday
+                            life, the goal is to encourage open
+                            conversation, challenge opinions and inspire
+                            positive change.
                         </p>
+
+                        <p>
+                            If you value honesty, straight talking and
+                            real-life experiences, you're in the right place.
+                        </p>
+
+                        <p>
+                            Expect real discussions, challenging viewpoints
+                            and thought-provoking podcasts with no filters.
+                        </p>
+
                     </div>
 
+
                     <div class="panel-actions">
+
                         <a class="panel-button"
                            href="https://www.youtube.com/@thedeeboproject"
                            target="_blank"
-                           rel="noopener noreferrer">Visit YouTube</a>
+                           rel="noopener noreferrer">
+
+                            Visit YouTube
+
+                        </a>
+
                     </div>
+
 
                     <div class="panel-hint">
                         Hover to explore • Click for more
                     </div>
+
                 </div>
+
             </article>
 
-            <!-- CARPENTRY -->
+
+
+            <!-- =====================================
+                 BESPOKE CARPENTRY
+                 ===================================== -->
+
             <article class="business-panel"
                      style="--panel-image: url('carpentry.jpeg.png');"
-                     tabindex="0"
-                     aria-label="Deebo Bespoke Carpentry">
+                     tabindex="0">
 
                 <div class="panel-content">
-<h2>Deebo Bespoke Carpentry</h2>
+
+                    <h2>
+                        Deebo Bespoke Carpentry
+                    </h2>
 
                     <p class="panel-intro">
-                        Handcrafted furniture and bespoke projects, built to order
-                        using traditional skills and modern design.
+                        Handcrafted furniture and bespoke projects,
+                        built to order and made especially for you.
                     </p>
 
+
                     <div class="panel-details">
+
                         <p>
-                            I specialise in handcrafted bespoke furniture and carpentry,
-                            built completely from scratch using reclaimed timber chosen
+                            Every piece tells a story; yours starts here.
+                        </p>
+
+                        <p>
+                            From custom shelving and tables to unique,
+                            one-off pieces, every project is built with
+                            precision and attention to detail.
+                        </p>
+
+                        <p>
+                            I specialise in creating handcrafted bespoke
+                            furniture and carpentry, built completely
+                            from scratch using reclaimed timber chosen
                             by you.
                         </p>
 
                         <p>
-                            I'm fully mobile, bringing the workshop to you. From custom
-                            shelving and tables to unique one-off pieces, every project
-                            is built with precision and attention to detail.
+                            I'm fully mobile, bringing the workshop to you.
+                            Whether it's a custom piece for your home or
+                            building it on-site as part of your space,
+                            you're involved throughout the journey,
+                            making every project as personal as the
+                            finished result.
                         </p>
 
                         <p>
-                            Whether you're looking for bespoke furniture, built-in storage,
-                            cabinetry, a unique statement piece or a custom carpentry
-                            project, I'd love to help bring your ideas to life.
+                            Over the years I've travelled throughout
+                            Europe, creating bespoke furniture for clients
+                            who wanted something unique, timeless and
+                            built to last.
+                        </p>
+
+                        <p>
+                            Whether you're looking for:
                         </p>
 
                         <ul>
-                            <li>Bespoke furniture</li>
-                            <li>Built-in storage and cabinetry</li>
-                            <li>Unique statement pieces</li>
-                            <li>Custom carpentry projects</li>
-                            <li>Made especially for you</li>
+
+                            <li>
+                                Bespoke furniture
+                            </li>
+
+                            <li>
+                                Built-in storage and cabinetry
+                            </li>
+
+                            <li>
+                                A unique statement piece designed
+                                around your vision
+                            </li>
+
+                            <li>
+                                Custom carpentry projects
+                            </li>
+
                         </ul>
 
                         <p>
-                            No mass production. No shortcuts. Just honest craftsmanship,
-                            premium reclaimed timber and furniture made especially for you.
+                            I'd love to help bring your ideas to life.
                         </p>
+
+                        <p>
+                            No mass production. No shortcuts. Just honest
+                            craftsmanship, premium reclaimed timber and
+                            furniture made especially for you.
+                        </p>
+
+                        <p>
+                            Get in touch to discuss your ideas and let's
+                            create something truly unique.
+                        </p>
+
+                        <p>
+                            Please note that all items are either
+                            individually handcrafted by me or reproduced
+                            from designs found online, tailored to each
+                            client's specific requirements and preferences.
+                        </p>
+
+                        <p>
+                            Email:
+                            deebo@thedeeboproject.com
+                        </p>
+
                     </div>
 
+
                     <div class="panel-actions">
-                        <a class="panel-button" href="gallery.html">View Gallery</a>
-                        <a class="panel-button" href="#contact">Request a Quote</a>
+
+                        <a class="panel-button"
+                           href="gallery.html">
+
+                            View Gallery
+
+                        </a>
+
+                        <a class="panel-button"
+                           href="#contact">
+
+                            Request a Quote
+
+                        </a>
+
                     </div>
+
 
                     <div class="panel-hint">
                         Hover to explore • Click for more
                     </div>
+
                 </div>
+
             </article>
 
+
         </div>
+
     </section>
+
+
+
+    <!-- =========================================
+         CONTACT
+         ========================================= -->
 
     <section id="contact">
 
         <div class="box">
 
-            <h2>Contact The Deebo Project</h2>
+            <h2>
+                Contact The Deebo Project
+            </h2>
 
             <p>
-                Get in touch for personal training, podcasts and bespoke
-                carpentry projects.
+                Get in touch for personal training, podcasts
+                and bespoke carpentry projects.
             </p>
+
 
             <div class="social-links">
 
                 <a href="mailto:deebo@thedeeboproject.com">
+
                     <i class="fas fa-envelope"></i>
+
                     deebo@thedeeboproject.com
+
                 </a>
 
-                <a href="https://www.facebook.com/thedeeboproject/" target="_blank">
+
+                <a href="https://www.facebook.com/thedeeboproject/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
                     <i class="fab fa-facebook"></i>
+
                     The Deebo Project
+
                 </a>
 
-                <a href="https://www.youtube.com/@thedeeboproject" target="_blank">
+
+                <a href="https://www.youtube.com/@thedeeboproject"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
                     <i class="fab fa-youtube"></i>
+
                     @thedeeboproject
+
                 </a>
 
-                <a href="https://wa.me/447345074892" target="_blank">
+
+                <a href="https://wa.me/447345074892"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
                     <i class="fab fa-whatsapp"></i>
+
                     +44 734 507 4892
+
                 </a>
 
             </div>
 
-            <form action="https://formspree.io/f/xaewywra" method="POST">
+
+            <!-- CONTACT FORM -->
+
+            <form action="https://formspree.io/f/xaewywra"
+                  method="POST">
 
                 <input type="text"
                        name="name"
                        placeholder="Your name"
                        required>
 
+
                 <input type="email"
                        name="email"
                        placeholder="Your email address"
                        required>
+
 
                 <textarea name="message"
                           placeholder="Write your message here..."
                           rows="6"
                           required></textarea>
 
-                <button type="submit">Send Message</button>
+
+                <button type="submit">
+                    Send Message
+                </button>
 
             </form>
 
@@ -570,38 +923,73 @@
 
     </section>
 
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
     <footer>
 
-        <p>© The Deebo Project 2026</p>
+        <p>
+            © The Deebo Project 2026
+        </p>
 
     </footer>
 
 
-    <script>
-        document.querySelectorAll(".business-panel").forEach(function(panel) {
-            panel.addEventListener("click", function(event) {
-                if (event.target.closest("a")) {
-                    return;
-                }
 
-                document.querySelectorAll(".business-panel").forEach(function(other) {
-                    if (other !== panel) {
-                        other.classList.remove("active", "expanded");
+    <!-- =========================================
+         PANEL CLICK FUNCTION
+         ========================================= -->
+
+    <script>
+
+        document
+            .querySelectorAll(".business-panel")
+            .forEach(function(panel) {
+
+                panel.addEventListener("click", function(event) {
+
+                    /*
+                       If the visitor clicks a button/link,
+                       don't close the panel.
+                    */
+
+                    if (event.target.closest("a")) {
+                        return;
                     }
+
+
+                    /*
+                       Close all other panels.
+                    */
+
+                    document
+                        .querySelectorAll(".business-panel")
+                        .forEach(function(other) {
+
+                            if (other !== panel) {
+
+                                other.classList.remove("expanded");
+
+                            }
+
+                        });
+
+
+                    /*
+                       Open / close the selected panel.
+                    */
+
+                    panel.classList.toggle("expanded");
+
                 });
 
-                panel.classList.toggle("active");
-                panel.classList.toggle("expanded");
             });
 
-            panel.addEventListener("keydown", function(event) {
-                if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    panel.click();
-                }
-            });
-        });
     </script>
+
 
 </body>
 
