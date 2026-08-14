@@ -1765,10 +1765,24 @@ function showPage(page) {
 
     document.body.classList.add("page-open");
 
+/* Jump directly to this section's photograph */
 
-    /* Scroll to top */
+var sectionImage =
+    selected.querySelector(".business-page-image");
 
-    window.scrollTo(0, 0);
+if (sectionImage) {
+
+    var imagePosition =
+        sectionImage.getBoundingClientRect().top +
+        window.pageYOffset -
+        85;
+
+    window.scrollTo({
+        top: imagePosition,
+        behavior: "smooth"
+    });
+
+}
 
 }
 
