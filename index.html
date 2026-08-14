@@ -100,6 +100,231 @@
             padding: 20px;
         }
 
+
+        /* =========================================
+           THE DEEBO PROJECT - BUSINESS CAROUSEL
+           ========================================= */
+
+        .business-carousel {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            min-height: 620px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .business-panel {
+            position: relative;
+            flex: 1 1 0;
+            min-width: 0;
+            min-height: 620px;
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            background: #111;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+            transition:
+                flex 0.55s ease,
+                transform 0.55s ease,
+                box-shadow 0.55s ease;
+        }
+
+        .business-panel:hover,
+        .business-panel.active {
+            flex: 1.45 1 0;
+            transform: translateY(-4px);
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.55);
+        }
+
+        .business-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: var(--panel-image);
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(35%) brightness(0.55);
+            transition:
+                transform 0.7s ease,
+                filter 0.7s ease;
+        }
+
+        .business-panel:hover::before,
+        .business-panel.active::before {
+            transform: scale(1.07);
+            filter: grayscale(5%) brightness(0.72);
+        }
+
+        .business-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.18) 0%,
+                rgba(0, 0, 0, 0.30) 35%,
+                rgba(0, 0, 0, 0.94) 100%
+            );
+            pointer-events: none;
+        }
+
+        .panel-content {
+            position: relative;
+            z-index: 2;
+            min-height: 620px;
+            height: 100%;
+            padding: 34px 28px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .panel-label {
+            display: inline-block;
+            width: fit-content;
+            padding: 6px 12px;
+            margin-bottom: 12px;
+            background: #cc0000;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .panel-content h2 {
+            color: #fff;
+            margin: 0 0 12px;
+            font-size: clamp(24px, 3vw, 38px);
+            line-height: 1.05;
+            text-shadow: 2px 2px 8px #000;
+        }
+
+        .panel-intro {
+            font-size: 16px;
+            line-height: 1.55;
+            margin: 0 0 18px;
+            max-width: 650px;
+        }
+
+        .panel-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transform: translateY(15px);
+            transition:
+                max-height 0.55s ease,
+                opacity 0.4s ease,
+                transform 0.55s ease;
+        }
+
+        .business-panel:hover .panel-details,
+        .business-panel.active .panel-details {
+            max-height: 285px;
+            opacity: 1;
+            transform: translateY(0);
+            overflow-y: auto;
+        }
+
+        .panel-details p,
+        .panel-details li {
+            line-height: 1.5;
+        }
+
+        .panel-details ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+        .panel-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .panel-button {
+            display: inline-block;
+            background: #cc0000;
+            color: #fff;
+            text-decoration: none;
+            padding: 11px 17px;
+            border-radius: 7px;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition:
+                background 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .panel-button:hover {
+            background: #ff0000;
+            transform: translateY(-2px);
+        }
+
+        .panel-hint {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #ddd;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 900px) {
+            .business-carousel {
+                min-height: 560px;
+            }
+
+            .business-panel {
+                min-height: 560px;
+            }
+
+            .panel-content {
+                min-height: 560px;
+                padding: 25px 20px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .business-carousel {
+                flex-direction: column;
+                min-height: auto;
+                overflow: visible;
+            }
+
+            .business-panel {
+                flex: none;
+                width: 100%;
+                min-height: 240px;
+                transform: none;
+            }
+
+            .business-panel:hover {
+                flex: none;
+                transform: none;
+            }
+
+            .business-panel:hover::before,
+            .business-panel.active::before {
+                transform: scale(1.03);
+            }
+
+            .panel-content {
+                min-height: 240px;
+                padding: 22px;
+            }
+
+            .business-panel .panel-details {
+                max-height: 0;
+            }
+
+            .business-panel.active .panel-details {
+                max-height: 330px;
+            }
+        }
+
     </style>
 
 </head>
@@ -124,252 +349,191 @@
 
     <nav>
 
-        <a href="#fitness">Fitness</a>
-        <a href="#youtube">YouTube</a>
-        <a href="#carpentry">Carpentry</a>
+        <a href="#businesses">Fitness</a>
+        <a href="#businesses">YouTube</a>
+        <a href="#businesses">Carpentry</a>
         <a href="#contact">Contact</a>
 
     </nav>
 
-   <section id="fitness">
+    <section id="businesses">
+        <div class="business-carousel">
 
-    <div class="box">
+            <!-- FITNESS -->
+            <article class="business-panel"
+                     style="--panel-image: url('fitness.jpeg');"
+                     tabindex="0"
+                     aria-label="Fitness and Personal Training">
 
-        <div style="display: flex;
-                    align-items: center;
-                    gap: 30px;
-                    flex-wrap: wrap;">
+                <div class="panel-content">
+                    <span class="panel-label">FITNESS</span>
 
-            <img src="fitness.jpeg"
-                 alt="Fitness and Personal Training"
-                 style="width: 350px;
-                        border-radius: 10px;">
+                    <h2>Fitness &amp; Personal Training</h2>
 
-            <div style="flex: 1; min-width: 300px;">
+                    <p class="panel-intro">
+                        Ex-British Army veteran and qualified personal trainer specialising
+                        in strength, conditioning and personal development.
+                    </p>
 
-            <h2>Fitness and Personal Training</h2>
+                    <div class="panel-details">
+                        <p>
+                            Ex-British Army and fully qualified personal trainer, dedicated
+                            to helping individuals transform both physically and mentally.
+                            I specialise in highly demanding training programmes, strength
+                            and conditioning, weight loss, muscle building and endurance.
+                        </p>
 
-<p>
-    Ex-British Army veteran and qualified personal trainer specialising
-    in strength, conditioning and personal development.
-</p>
+                        <p>
+                            I provide personalised nutrition advice, 24/7 support and
+                            guidance, and practical life coaching designed to build
+                            confidence, discipline and a winning mindset.
+                        </p>
 
-<details>
+                        <p>
+                            I also offer fitness holidays and retreats abroad in the sun,
+                            combining intensive training, nutrition guidance, relaxation
+                            and personal development.
+                        </p>
 
-    <summary style="cursor: pointer; color: orange;">
-        Read more...
-    </summary>
+                        <ul>
+                            <li>Personal training and strength coaching</li>
+                            <li>Weight loss and body transformation</li>
+                            <li>Muscle building and conditioning</li>
+                            <li>Nutrition advice and meal guidance</li>
+                            <li>24/7 support and accountability</li>
+                            <li>Life coaching and mindset development</li>
+                            <li>Confidence building and motivation</li>
+                            <li>Overseas fitness holidays and retreats</li>
+                            <li>Training throughout the UK and Europe</li>
+                        </ul>
+                    </div>
 
-    <p>
-       ** Fitness & Personal Training ** </p> 
+                    <div class="panel-actions">
+                        <a class="panel-button" href="#contact">Get in Touch</a>
+                    </div>
 
-<p> Ex-British Army and fully qualified personal trainer, dedicated to helping individuals transform both physically and mentally. I specialise in highly demanding training programmes, strength and conditioning, weight loss, muscle building and endurance, tailoring every programme to each individual's goals and abilities. </p>
+                    <div class="panel-hint">
+                        Hover to expand • Discipline. Focus. Hard Work. Real Results.
+                    </div>
+                </div>
+            </article>
 
-<p> Fitness is about more than simply training in the gym. I provide personalised nutrition advice, 24/7 support and guidance, and practical life coaching designed to build confidence, discipline and a winning mindset. Whether your goal is to improve your health, push your physical limits or make lasting changes to your lifestyle, I will support you every step of the way. </p>
+            <!-- YOUTUBE / PODCASTS -->
+            <article class="business-panel"
+                     style="--panel-image: url('youtube.jpeg.png');"
+                     tabindex="0"
+                     aria-label="YouTube and Podcasts">
 
-<p>My approach combines military discipline with realistic, sustainable methods that deliver long-term results. Through one-to-one coaching, motivation and accountability, I help clients develop the habits, mindset and resilience needed to succeed not only in fitness, but in everyday life. </p>
+                <div class="panel-content">
+                    <span class="panel-label">CONVERSATIONS</span>
 
-<p> For those looking for a complete change of environment, I also offer fitness holidays and retreats abroad in the sun. These retreats combine intensive training, nutrition guidance, relaxation and personal development, as well as having a Life Coach on hand to offer guidance, eliminate obstacles that may be holding you back and to help you stay on track, giving clients the opportunity to focus entirely on their physical and mental wellbeing in a motivating and inspiring setting. </p>
+                    <h2>YouTube &amp; Podcasts</h2>
 
-<p>Services include: </p>
-<p> * Personal training and strength coaching </p>
-<p> * Weight loss and body transformation </p>
-<p> * Muscle building and conditioning </p>
-<p> * Nutrition advice and meal guidance </p>
-<p> * 24/7 support and accountability </p>
-<p> * Life coaching and mindset development </p>
-<p> * Confidence building and motivation </p>
-<p> * Overseas fitness holidays and retreats </p>
-<p> * Training available throughout the UK and Europe </p>
-                      <p>  Discipline. Focus. Hard Work. Real Results. </p>
+                    <p class="panel-intro">
+                        Straight talking, honest conversations, real experiences and
+                        topics many people avoid discussing.
+                    </p>
 
+                    <div class="panel-details">
+                        <p>
+                            This channel is built around honest conversations, real
+                            experiences and topics that many people avoid discussing,
+                            alongside day-to-day life.
+                        </p>
 
-</details>
-                </p> Tel: +44 734 507 4892 </p>
-                <p> Email: deebo@thedeeboproject.com </p>
+                        <p>
+                            Expect straightforward discussions covering controversial
+                            subjects, current affairs, life experiences, personal
+                            responsibility, fitness, mental resilience and the challenges
+                            people face in everyday life.
+                        </p>
 
-            </div>
+                        <p>
+                            Nothing is off limits. The goal is to explore different
+                            perspectives without sensationalism or sugar-coating the truth,
+                            while encouraging open conversation and positive change.
+                        </p>
+
+                        <p>
+                            Real discussions. Challenging viewpoints. Thought-provoking
+                            podcasts. No filters.
+                        </p>
+                    </div>
+
+                    <div class="panel-actions">
+                        <a class="panel-button"
+                           href="https://www.youtube.com/@thedeeboproject"
+                           target="_blank"
+                           rel="noopener noreferrer">Visit YouTube</a>
+                    </div>
+
+                    <div class="panel-hint">
+                        Hover to expand • Real talk. Real people. Real life.
+                    </div>
+                </div>
+            </article>
+
+            <!-- CARPENTRY -->
+            <article class="business-panel"
+                     style="--panel-image: url('carpentry.jpeg.png');"
+                     tabindex="0"
+                     aria-label="Deebo Bespoke Carpentry">
+
+                <div class="panel-content">
+                    <span class="panel-label">CREATION</span>
+
+                    <h2>Deebo Bespoke Carpentry</h2>
+
+                    <p class="panel-intro">
+                        Handcrafted furniture and bespoke projects, built to order
+                        using traditional skills and modern design.
+                    </p>
+
+                    <div class="panel-details">
+                        <p>
+                            I specialise in handcrafted bespoke furniture and carpentry,
+                            built completely from scratch using reclaimed timber chosen
+                            by you.
+                        </p>
+
+                        <p>
+                            I'm fully mobile, bringing the workshop to you. From custom
+                            shelving and tables to unique one-off pieces, every project
+                            is built with precision and attention to detail.
+                        </p>
+
+                        <p>
+                            Whether you're looking for bespoke furniture, built-in storage,
+                            cabinetry, a unique statement piece or a custom carpentry
+                            project, I'd love to help bring your ideas to life.
+                        </p>
+
+                        <ul>
+                            <li>Bespoke furniture</li>
+                            <li>Built-in storage and cabinetry</li>
+                            <li>Unique statement pieces</li>
+                            <li>Custom carpentry projects</li>
+                            <li>Made especially for you</li>
+                        </ul>
+
+                        <p>
+                            No mass production. No shortcuts. Just honest craftsmanship,
+                            premium reclaimed timber and furniture made especially for you.
+                        </p>
+                    </div>
+
+                    <div class="panel-actions">
+                        <a class="panel-button" href="gallery.html">View Gallery</a>
+                        <a class="panel-button" href="#contact">Request a Quote</a>
+                    </div>
+
+                    <div class="panel-hint">
+                        Hover to expand • No mass production. No shortcuts.
+                    </div>
+                </div>
+            </article>
 
         </div>
-
-    </div>
-
-</section>
-
-    </section>
-
-  <section id="youtube">
-
-    <div class="box">
-
-        <div style="display: flex;
-                    align-items: center;
-                    gap: 30px;
-                    flex-wrap: wrap;">
-
-            <img src="youtube.jpeg.png"
-                 alt="YouTube and Podcasts"
-                 style="width: 350px;
-                        border-radius: 10px;">
-
-            <div style="flex: 1; min-width: 300px;">
-
-                <h2>YouTube & Podcasts</h2>
-
-                <p>
-                    * Welcome to the channel * </p>
-              
-                </p> Straight talking, this channel is built around honest conversations, real experiences and topics that
-many people avoid discussing, alongside day to day life.
-</p>
-
-<details>
-
-    <summary>Read more...</summary>
-
-    <p>Expect straightforward discussions covering controversial subjects, current affairs, life experiences,
-personal responsibility, fitness, mental resilience and the challenges people face in everyday life.
-Nothing is off limits, and every conversation aims to explore different perspectives without
-sensationalism or sugar-coating the truth.</p>
-
-    <p>Whether we're discussing difficult social issues, interviewing people from different backgrounds or
-simply documenting everyday life, the goal is to encourage open conversation, challenge opinions and
-inspire positive change.
-</p>
-    <p> If you value honesty, straight talking and real-life experiences, you're in the right place </p>
-
-       <p>
-                    Expect real discussions, challenging viewpoints and
-                    thought-provoking podcasts with no filters.
-                </p>
-    </ul>
-
-    <h3> Email: deebo@thedeeboproject.com  Tel: +44 734 507 4892 </h3>
-
-  
-
-
-
-    
-  
-
-              
-            
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-        </div>
-
-    </section>
-<section id="carpentry">
-
-    <div class="box">
-
-        <div style="display: flex;
-                    align-items: center;
-                    gap: 30px;
-                    flex-wrap: wrap;">
-
-            <img src="carpentry.jpeg.png"
-                 alt="Bespoke Carpentry"
-                 style="width: 350px;
-                        border-radius: 10px;">
-
-            <div style="flex: 1; min-width: 300px;">
-
-                <h2> ✨ **WELCOME TO DEEBO BESPOKE CARPENTRY** ✨ </h2>
-                
-
-                <p>
-                    Handcrafted furniture and bespoke projects,
-                    built to order using traditional skills and
-                    modern design.
-                </p>
-                <a href="gallery.html">
-
-    <button>gallery.html</button>
-
-</a>
-                <details>
-
-    <summary>Read more...</summary>
-
-    <p>
-        Every piece tells a story; yours starts here.
-    </p>
-
-    <p>
-        From custom shelving and tables to unique,
-        one-off pieces, every project is built with
-        precision and attention to detail.
-    </p>
-
-
-
-                <p>
-                   I specialise in creating **handcrafted bespoke furniture and carpentry**, built completely from scratch using **reclaimed timber** chosen by you. Every grain, every finish and every detail is carefully crafted to create something that's truly one of a kind.
-                </p>
-                <p>🚐 **I'm fully mobile**, bringing the workshop to you. Whether it's a custom piece for your home or building it on-site as part of your space, you're involved throughout the journey, making every project as personal as the finished result. </p>
-<p> Over the years I've travelled throughout **Europe**, creating bespoke furniture for clients who wanted something unique, timeless and built to last. That experience has helped me earn a reputation for quality craftsmanship, attention to detail and delivering pieces that simply can't be bought off the shelf.</p>
-<p>Whether you're looking for: </p> 
-                <ul>
-        <li>🪵 Bespoke furniture</li>
-        <li>🏡 Built-in storage and cabinetry</li>
-        <li>✨ A unique statement piece designed around your vision </li>
-    <li> 🛠️ Custom carpentry projects </li>
-                    <p> I'd love to help bring your ideas to life. </p>
-                    <p> **No mass production. No shortcuts. Just honest craftsmanship, premium reclaimed timber and furniture made especially for you.**</p>
-               <p> 📩 Get in touch to discuss your ideas and let's create something truly unique.</p>
-                    <p> * Please note that all items are either individually handcrafted by me or reproduced from designs found online, tailored to each client's specific requirements and preferences. * </p>
-                <p>📧 deebo@thedeeboproject.com</p>
-                
-                </ul>
-                    <h3 style="color: orange;">Request a Quote</h3>
-
-<form action="https://formspree.io/f/xaewywra" method="POST">
-
-    <input type="text"
-           name="name"
-           placeholder="Your name"
-           required>
-
-    <input type="email"
-           name="email"
-           placeholder="Your email address"
-           required>
-
-    <input type="tel"
-           name="phone"
-           placeholder="Your phone number">
-
-    <input type="text"
-           name="project"
-           placeholder="Project type (table, shelving, wardrobe, etc.)"
-           required>
-
-    <textarea name="description"
-              placeholder="Describe your project, dimensions, wood preferences and any ideas you have."
-              rows="6"
-              required></textarea>
-
-    <button type="submit">Request Quote</button>
-
-</form>
-            
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
     </section>
 
     <section id="contact">
@@ -437,6 +601,32 @@ inspire positive change.
         <p>© The Deebo Project 2026</p>
 
     </footer>
+
+
+    <script>
+        document.querySelectorAll(".business-panel").forEach(function(panel) {
+            panel.addEventListener("click", function(event) {
+                if (event.target.closest("a")) {
+                    return;
+                }
+
+                document.querySelectorAll(".business-panel").forEach(function(other) {
+                    if (other !== panel) {
+                        other.classList.remove("active");
+                    }
+                });
+
+                panel.classList.toggle("active");
+            });
+
+            panel.addEventListener("keydown", function(event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    panel.click();
+                }
+            });
+        });
+    </script>
 
 </body>
 
