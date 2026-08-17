@@ -1013,7 +1013,262 @@ More →
 </section>
 
 
-<!-- =================================================
+<!-- =========================================================
+     TESTIMONIALS
+     ========================================================= -->
+
+<section id="testimonials" class="testimonials-section">
+
+    <div class="testimonials-box">
+
+        <h2>What Our Clients Say</h2>
+
+        <div class="testimonial-carousel">
+
+            <div class="testimonial-slide active">
+
+                <div class="testimonial-quote">“</div>
+
+                <p>
+                    I was extremely out of shape when I started working with Elroy.
+                    After only 3 months of hard, physical training, I found the
+                    6-pack I thought I would never have.
+                </p>
+
+                <p>
+                    Physically demanding and focused is how I would describe
+                    Elroy's training, but worth the pain and every drop of sweat.
+                </p>
+
+                <span>~ Mehmet Akin</span>
+                <small>Personal Training Client</small>
+
+            </div>
+
+
+            <div class="testimonial-slide">
+
+                <div class="testimonial-quote">“</div>
+
+                <p>
+                    I was shy and nervous and thought my body couldn't perform
+                    a push-up, but after time and perseverance and words of
+                    encouragement from Elroy, I can run 15 km without breaking
+                    a sweat, I do push-ups daily and have the confidence to
+                    hit the gym/run outside and feel OK in my own body.
+                </p>
+
+                <p>
+                    I was offered after-care and nutritional advice, and even
+                    Life Coaching, to help me stay on track; which I have :)
+                </p>
+
+                <span>~ Jo Miller</span>
+                <small>Personal Training Client</small>
+
+            </div>
+
+
+            <div class="testimonial-slide">
+
+                <div class="testimonial-quote">“</div>
+
+                <p>
+                    Deebos Carpentry delivers exactly what it promises.
+                    My furniture (bedroom and garden) was made to my
+                    specifications and with my dream in mind.
+                </p>
+
+                <p>
+                    He even travelled 200 miles to work with me.
+                    I am a very happy customer.
+                </p>
+
+                <span>~ Andrea Swaine</span>
+                <small>Carpentry Client</small>
+
+            </div>
+
+        </div>
+
+
+        <div class="testimonial-dots">
+
+            <button class="testimonial-dot active"
+                    onclick="showTestimonial(0)"></button>
+
+            <button class="testimonial-dot"
+                    onclick="showTestimonial(1)"></button>
+
+            <button class="testimonial-dot"
+                    onclick="showTestimonial(2)"></button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+.testimonials-section {
+    background: #111;
+    padding: 70px 20px;
+    text-align: center;
+}
+
+.testimonials-box {
+    max-width: 850px;
+    margin: auto;
+}
+
+.testimonials-box h2 {
+    color: #f28c28;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.testimonial-carousel {
+    position: relative;
+    min-height: 300px;
+}
+
+.testimonial-slide {
+    display: none;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 40px 45px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    animation: testimonialFade 0.6s ease;
+}
+
+.testimonial-slide.active {
+    display: block;
+}
+
+.testimonial-slide p {
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.testimonial-quote {
+    color: #f28c28;
+    font-size: 60px;
+    line-height: 40px;
+    margin-bottom: 20px;
+}
+
+.testimonial-slide span {
+    display: block;
+    color: #f28c28;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+.testimonial-slide small {
+    display: block;
+    color: #aaa;
+    margin-top: 6px;
+}
+
+.testimonial-dots {
+    margin-top: 25px;
+}
+
+.testimonial-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    margin: 0 6px;
+    background: #555;
+    cursor: pointer;
+}
+
+.testimonial-dot.active {
+    background: #f28c28;
+    transform: scale(1.25);
+}
+
+@keyframes testimonialFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .testimonials-box h2 {
+        font-size: 28px;
+    }
+
+    .testimonial-slide {
+        padding: 30px 22px;
+    }
+
+    .testimonial-slide p {
+        font-size: 16px;
+    }
+
+}
+
+</style>
+
+
+<script>
+
+let currentTestimonial = 0;
+
+function showTestimonial(number) {
+
+    const slides =
+        document.querySelectorAll(".testimonial-slide");
+
+    const dots =
+        document.querySelectorAll(".testimonial-dot");
+
+    slides.forEach(function(slide) {
+        slide.classList.remove("active");
+    });
+
+    dots.forEach(function(dot) {
+        dot.classList.remove("active");
+    });
+
+    slides[number].classList.add("active");
+    dots[number].classList.add("active");
+
+    currentTestimonial = number;
+}
+
+
+function nextTestimonial() {
+
+    currentTestimonial++;
+
+    if (currentTestimonial >= 3) {
+        currentTestimonial = 0;
+    }
+
+    showTestimonial(currentTestimonial);
+}
+
+
+setInterval(nextTestimonial, 7000);
+
+</script>
+      <!-- =================================================
      CONTACT
      ================================================= -->
 
