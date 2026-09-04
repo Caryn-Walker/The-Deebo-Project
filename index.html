@@ -37,9 +37,41 @@
 .banner-hotspot {
   position: absolute;
   display: block;
-
+  border-radius: 8px;
+  background: rgba(255,255,255,0);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  /* remove this line once you've confirmed the zones line up */
+  border: 2px dashed rgba(255, 0, 0, 0.6);
 }
 
+.banner-hotspot:hover {
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.5) inset;
+
+}
+.banner-qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.banner-qr img {
+  width: 66px;
+  height: 66px;
+  border-radius: 6px;
+  background: #fff;
+  padding: 5px;
+}
+
+.banner-qr span {
+  color: #ccc;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
 .hotspot-fitness {
   left: 0%;
   top: 55%;
@@ -61,6 +93,7 @@
   width: 33%;
   height: 96%;
 }
+  
 
 .banner-links {
   background: #1c1d24;
@@ -71,6 +104,30 @@
   flex-wrap: wrap;
   border-top: 1px solid rgba(255,255,255,0.08);
 }
+
+  .banner-qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.banner-qr img {
+  width: 66px;
+  height: 66px;
+  border-radius: 6px;
+  background: #fff;
+  padding: 5px;
+}
+
+.banner-qr span {
+  color: #ccc;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+  
 
 .banner-links a {
   display: inline-flex;
@@ -920,7 +977,12 @@ body.page-open .business-page.active {
         <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94Z"/>
       </svg>
       Facebook
-    </a>
+    </a><div class="banner-qr">
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fhihello.com%2Fp%2F3c2e9747-7f45-445a-8862-753da6ae2d00"
+       alt="Scan to save Elroy's contact details">
+  <span>Scan Me</span>
+</div>
+    
     <a href="mailto:deebo@thedeeboproject.com">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <rect x="2.5" y="4.5" width="19" height="15" rx="2"/>
