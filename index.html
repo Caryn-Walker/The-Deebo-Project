@@ -2267,9 +2267,14 @@ function showHome() {
         });
 
 
-    /* Scroll to top */
+      /* Scroll to top */
 
     window.scrollTo(0, 0);
+
+
+    /* Clear the URL hash so refreshing doesn't reopen a business page */
+
+    history.replaceState(null, document.title, window.location.pathname);
 
 }
 
