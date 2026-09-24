@@ -270,6 +270,58 @@ nav a:hover {
     color: orange;
 
 }
+      
+/* =====================================================
+   FLOATING HOME BUTTON
+   ===================================================== */
+
+.floating-home {
+
+    display: none;
+
+    position: fixed;
+
+    bottom: 24px;
+
+    right: 24px;
+
+    z-index: 1001;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 12px 20px;
+
+    background: #cc0000;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    border-radius: 50px;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+
+    transition: background 0.2s ease, transform 0.2s ease;
+
+}
+
+.floating-home:hover {
+
+    background: #ff0000;
+
+    transform: translateY(-2px);
+
+}
+
+body.page-open .floating-home {
+
+    display: flex;
+
+}
 
 
 /* =====================================================
