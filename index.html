@@ -883,6 +883,31 @@ footer {
 
 @media (max-width: 800px) {
 
+    /* Banner: let it use the full phone width
+       (the banner sits inside two nested headers,
+       which doubled the side padding on small screens) */
+
+    header {
+
+        padding: 12px;
+
+    }
+
+    header header {
+
+        padding: 0;
+
+    }
+
+    /* Stop the Facebook / Email buttons stretching
+       to the height of the QR code */
+
+    .banner-links {
+
+        align-items: center;
+
+    }
+
     nav a {
 
         display: inline-block;
